@@ -1,0 +1,3 @@
+{% macro plotly_plot(fig) %}
+    {{ fig.to_html(full_html=False) | safe }}
+{% endmacro %}

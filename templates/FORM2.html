@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Map</title>
+    <!-- Inclure la bibliothèque Leaflet pour le rendu de la carte -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+</head>
+<body>
+    <!-- Div pour afficher la carte -->
+    <div id="map" style="height: 500px;"></div>
+
+    <script>
+      // Initialiser la carte avec Leaflet
+      var mymap = L.map('map').setView([0, 0], 2);
+
+      // Ajouter une couche de carte OpenStreetMap
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; OpenStreetMap contributors'
+      }).addTo(mymap);
+
+      // Afficher le nom du pays au clic
+      mymap.on('click', function (event) {
+        // Envoyer les coordonnées au serveur pour obtenir le nom du pays
+        var lat = event.latlng.lat.toFixed(5);
+        var lon = event.latlng.lng.toFixed(5);
+
+        // Effectuer une requête POST pour obtenir le nom du pays
+        fetch('/get_country', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+          },
+          body: 'lat=' + lat + '&lon=' + lon,
+        })
+          .then(response => response.text())
+          .then(country => {
+            // Afficher le nom du pays dans une alerte
+            alert('Pays : ' + country);
+          });
+      });
+    </script>
+
+</body>
+</html>

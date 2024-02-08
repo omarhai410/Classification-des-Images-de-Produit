@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulaire</title>
+
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.1/xlsx.full.min.js"></script>
+
+
+  <style>
+  .hidden {
+    display: none;
+  }
+  body {
+    background-image: none; /* Supprime l'image de fond */
+    background-color: #87CEEB; /* Couleur bleu ciel de fond */
+
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+  }
+  .table th, .table td {
+    border-bottom: 1px solid #87CEEB; /* Changez cette couleur selon vos préférences */
+  }
+
+  .table tr {
+    background-color: white; /* Remplacez cette couleur par la teinte de gris de votre choix */
+  }
+
+
+  .footer {
+    display: none; /* Par défaut, masquez le pied de page */
+    background: linear-gradient(to bottom, gray, blue);
+    color: #fff; /* Couleur du texte */
+    padding: 20px; /* Ajoutez de la marge à l'intérieur du pied de page */
+    text-align: center; /* Centrez le texte */
+  }
+
+  /* Add CSS styles for animation */
+  @keyframes changeHeadingAnimation {
+    0% { transform: translateY(0); opacity: 1; }
+    25% { transform: translateY(-20px); opacity: 0.75; }
+    50% { transform: translateY(0); opacity: 1; }
+    75% { transform: translateY(20px); opacity: 0.75; }
+    100% { transform: translateY(0); opacity: 1; }
+  }
+
+  #dynamicHeading {
+    color: white; /* Set text color to be visible on the image */
+    animation: changeHeadingAnimation 4s infinite;
+  }
+
+  .custom-bordered-table {
+    border: 2px solid blue;
+    background-color: white; /* Arrière-plan blanc */
+  }
+
+  .custom-bordered-table td {
+    border: 2px solid blue;
+  }
+
+  .table-container {
+    margin-top: 20px; /* Ajustez la valeur selon vos besoins */
+  }
+
+  th, td {
+    display: block;
+    margin-bottom: 10px; /* Ajoutez une marge entre chaque élément pour l'espacement */
+  }
+
+  /* Define initial styles for the th and td elements */
+  .table td {
+    transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+  }
+  .table th {
+    transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+  }
+
+  /* Define styles for the th and td elements when hovered */
+
+  .table td:hover {
+    background-color: lightblue; /* Change the background color */
+    transform: scale(1.1); /* Grow the size by 10% */
+  }
+  .table th:hover {
+    background-color: lightblue; /* Change the background color */
+    transform: scale(1.1); /* Grow the size by 10% */
+  }
+  .footer {
+    background-color: #f8f9fa;
+    padding: 20px 0;
+  }
+
+
+</style>
+</head>
+<body>
+
+<iframe src="menu.html" width="100%" height="100px" frameborder="0"></iframe>
+
+<div class="container table-container">
+  <div class="custom-control custom-switch mt-3">
+    <input type="checkbox" class="custom-control-input" id="toggleSwitch">
+    <label class="custom-control-label" for="toggleSwitch"><span id="toggleText"></span></label>
+  </div>
+
+
+  <ul class="list-group" id="contentList">
+    <li class="list-group-item"><strong>Théoriquement, l'objectif principal de cette page est de faciliter la prédiction des ventes et de la quantité de produits. Voici quelques points clés liés à cet objectif :</strong></li>
+    <li class="list-group-item"><strong>Collecte de Données Précises :</strong> Les champs du formulaire capturent des données spécifiques liées aux transactions commerciales, aux produits, et aux clients. Ces données sont essentielles pour établir des modèles de prédiction.</li>
+    <li class="list-group-item"><strong>Paramètres de Prédiction :</strong> Les différents champs du formulaire représentent des paramètres qui peuvent influencer les prédictions de ventes et de quantités de produits.</li>
+    <li class="list-group-item"><strong>Analyse Statistique :</strong> En soumettant ces données, l'utilisateur peut potentiellement alimenter des modèles d'analyse statistique ou d'apprentissage machine.</li>
+    <li class="list-group-item"><strong>Optimisation des Prévisions :</strong> Les prédictions obtenues peuvent être utilisées pour optimiser la planification des stocks, les stratégies de vente, et d'autres aspects opérationnels.</li>
+    <li class="list-group-item"><strong>Amélioration des Stratégies Commerciales :</strong> En comprenant mieux les facteurs qui influent sur les ventes et la demande de produits, une entreprise pourrait ajuster ses stratégies commerciales.</li>
+    <li class="list-group-item"><strong>Réduction des Risques :</strong> En disposant de prévisions plus précises, une entreprise peut réduire les risques liés aux excédents ou aux pénuries de stocks.</li>
+  </ul>
+</div>
+
+<div class="container mt-4">
+  <h2 id="dynamicHeading" class="mb-4">Prediction of Sales and Quantity of Products</h2>
+  <form id="predictionForm" action="/predict_sales" method="post">
+
+    <div class="form-group">
+      <label for="modeOption">Select Mode:</label>
+      <select id="modeOption" class="form-control" name="predictionMode">
+        <option value="Sales Prediction">Sales Prediction</option>
+        <option value="Quantity of Product">Quantity of Product</option>
+      </select>
+    </div>
+
+    <table class="table">
+      <tbody>
+      <tr>
+        <th class="sales-prediction-columns">Benefit per order</th>
+        <td class="sales-prediction-columns"><input type="text" name="benefit_per_order"></td>
+      </tr>
+      <tr>
+        <th class="sales-prediction-columns">Category Name</th>
+        <td class="sales-prediction-columns"><input type="text" name="category_name"></td>
+      </tr>
+      <tr>
+        <th class="sales-prediction-columns">Order Item Discount</th>
+        <td class="sales-prediction-columns"><input type="text" name="order_item_discount"></td>
+      </tr>
+      <tr>
+        <th class="sales-prediction-columns">Order Item Total</th>
+        <td class="sales-prediction-columns"><input type="text" name="order_item_total"></td>
+      </tr>
+      <tr>
+        <th class="sales-prediction-columns">Order Profit Per Order</th>
+        <td class="sales-prediction-columns"><input type="text" name="order_profit_per_order"></td>
+      </tr>
+      <tr>
+        <th class="sales-prediction-columns">Product Image</th>
+        <td class="sales-prediction-columns"><input type="text" name="product_image"></td>
+      </tr>
+      <tr>
+        <th class="sales-prediction-columns">Product Name</th>
+        <td class="sales-prediction-columns"><input type="text" name="product_name"></td>
+      </tr>
+      <tr>
+        <th class="sales-prediction-columns">Product Price</th>
+        <td class="sales-prediction-columns"><input type="text" name="product_price"></td>
+      </tr>
+      <tr>
+        <th class="quantity-of-product-columns">Department Id</th>
+        <td class="quantity-of-product-columns"><input type="text" name="department_id"></td>
+      </tr>
+      <tr>
+        <th class="quantity-of-product-columns">Department Name</th>
+        <td class="quantity-of-product-columns"><input type="text" name="department_name"></td>
+      </tr>
+      <tr>
+        <th class="quantity-of-product-columns">Sales</th>
+        <td class="quantity-of-product-columns"><input type="text" name="quantity_of_product_sales"></td>
+      </tr>
+      <tr>
+        <th class="quantity-of-product-columns">Order Item Total</th>
+        <td class="quantity-of-product-columns"><input type="text" name="quantity_of_product_order_item_total"></td>
+      </tr>
+      <tr>
+        <th class="quantity-of-product-columns">Product Card Id</th>
+        <td class="quantity-of-product-columns"><input type="text" name="product_card_id"></td>
+      </tr>
+      <tr>
+        <th class="quantity-of-product-columns">Product Category Id</th>
+        <td class="quantity-of-product-columns"><input type="text" name="product_category_id"></td>
+      </tr>
+      <tr>
+        <th class="quantity-of-product-columns">Product Image</th>
+        <td class="quantity-of-product-columns"><input type="text" name="quantity_of_product_image"></td>
+      </tr>
+      <tr>
+        <th class="quantity-of-product-columns">Product Name</th>
+        <td class="quantity-of-product-columns"><input type="text" name="quantity_of_product_name"></td>
+      </tr>
+      <tr>
+        <th class="quantity-of-product-columns">Product Price</th>
+        <td class="quantity-of-product-columns"><input type="text" name="quantity_of_product_price"></td>
+      </tr>
+      </tbody>
+    </table>
+
+    <div class="modal fade" id="predictionModal" tabindex="-1" role="dialog" aria-labelledby="predictionModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="predictionModalLabel">Sales Prediction</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p id="predictionMessage">Sales predicted est fixé à : <span id="salesPredictedValue">--</span>, merci de votre visite.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="quantityPredictionModal" tabindex="-1" role="dialog" aria-labelledby="quantityPredictionModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="quantityPredictionModalLabel">Quantity Prediction</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p id="quantityPredictionMessage">La quantité de produit est fixée à : <span id="predictedQuantityValue">100,000</span>, merci de votre visite.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <br>
+
+    <div class="btn-group">
+      <button type="submit" class="btn btn-primary mx-2 mb-5" id="submitButton">Submit</button>
+      <button type="button" class="btn btn-primary mx-2 mb-5" id="fileInputLabel">Importer XLSX</button>
+      <input type="file" id="fileInput" class="btn btn-primary" accept=".xlsx" style="display:none;">
+    </div>
+
+  </form>
+
+</div>
+<footer class="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <h4>OMAR HAI / ENSAH</h4>
+        <p>&copy; 2023 Tous droits réservés.</p>
+      </div>
+      <div class="col-md-4">
+        <h4>Contactez-nous</h4>
+        <p><i class="far fa-envelope"></i> Email: <a href="mailto:omar.hai@etu.uae.ac.ma">omar.hai@etu.uae.ac.ma</a></p>
+        <p><i class="fas fa-phone"></i> Téléphone: +212 6 49 20 59 89 </p>
+        <p><i class="fas fa-map-marker-alt"></i> Adresse: Votre adresse ici</p>
+      </div>
+      <div class="col-md-4">
+        <h4>Suivez-nous</h4>
+        <a href="https://www.facebook.com/profile.php?id=100039967148784" target="_blank"><i class="fab fa-facebook"></i> Facebook</a>
+        <a href="https://twitter.com/votrepage" target="_blank"><i class="fab fa-twitter"></i> Twitter</a>
+        <a href="https://www.linkedin.com/in/omar-hai-b75b32207/" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+      </div>
+    </div>
+  </div>
+  <!-- Intégrer la carte Google Maps -->
+  <div class="container mt-4">
+    <iframe
+      width="100%"
+      height="300"
+      frameborder="0" style="border:0"
+      src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13045.419024695457!2d-3.8620479!3d35.1727096!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd742cdef50e1b29%3A0x19897f71ba224d93!2s%C3%89cole%20nationale%20des%20sciences%20appliqu%C3%A9es%20d&#39;Alhoceima!5e0!3m2!1sfr!2sma!4v1703089596134!5m2!1sfr!2sma"
+      allowfullscreen>
+    </iframe>
+  </div>
+</footer>
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core/dist/umd/popper.min.js"></script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    function showFooter() {
+      var footer = document.querySelector('.footer');
+      // Vérifiez si la position actuelle de défilement est proche du bas de la page
+      if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+        footer.style.display = 'block';
+      } else {
+        footer.style.display = 'none';
+      }
+    }
+
+    // Ajoutez un écouteur d'événements de défilement
+    window.addEventListener('scroll', showFooter);
+
+    // Appelez la fonction pour afficher le pied de page au chargement initial
+    showFooter();
+  });
+</script>
+
+<script>// Sélectionnez l'élément de sélection du mode d'option
+var modeOptionSelect = document.getElementById('modeOption');
+
+// Ajoutez un écouteur d'événements pour détecter le changement de sélection
+modeOptionSelect.addEventListener('change', function() {
+  var selectedOption = modeOptionSelect.value; // Obtenez la valeur de l'option sélectionnée
+
+  // Sélectionnez les colonnes spécifiques à afficher en fonction de l'option sélectionnée
+  var salesPredictionColumns = document.querySelectorAll('.sales-prediction-columns');
+  var quantityOfProductColumns = document.querySelectorAll('.quantity-of-product-columns');
+
+  // Cachez toutes les colonnes spécifiques
+  salesPredictionColumns.forEach(function(column) {
+    column.style.display = 'none';
+  });
+  quantityOfProductColumns.forEach(function(column) {
+    column.style.display = 'none';
+  });
+
+  // Affichez les colonnes spécifiques en fonction de l'option sélectionnée
+  if (selectedOption === 'Sales Prediction') {
+    salesPredictionColumns.forEach(function(column) {
+      column.style.display = 'table-cell';
+    });
+  } else if (selectedOption === 'Quantity of Product') {
+    quantityOfProductColumns.forEach(function(column) {
+      column.style.display = 'table-cell';
+    });
+  }
+});
+</script>
+<script><script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+  $(document).ready(function () {
+    // Cacher le contenu au chargement de la page
+    $("#contentList").addClass("hidden");
+
+    // Gérer le changement d'état du commutateur
+    $("#toggleSwitch").change(function () {
+      var isContentVisible = this.checked;
+      $("#contentList").toggleClass("hidden", !isContentVisible);
+
+
+      // Mettre à jour le texte du commutateur
+      $("#toggleText").text(isContentVisible ? "Masquer" : "Afficher");
+    });
+  });
+</script>
+<!-- Ajoutez ces lignes à la fin de votre fichier HTML -->
+<script>
+  $(document).ready(function () {
+    // Gérer le clic sur le bouton "Submit"
+    $("#submitButton").click(function (e) {
+      e.preventDefault();
+      console.log("Bouton Submit cliqué");
+
+      // Préparer les données pour la prédiction
+      var predictionData = {
+        'Benefit per order': $('input[name="benefit_per_order"]').val(),
+        'Category Name': $('input[name="category_name"]').val(),
+        'Order Item Discount': $('input[name="order_item_discount"]').val(),
+        'Order Item Total': $('input[name="order_item_total"]').val(),
+        'Order Profit Per Order': $('input[name="order_profit_per_order"]').val(),
+        'Product Image': $('input[name="product_image"]').val(),
+        'Product Name': $('input[name="product_name"]').val(),
+        'Product Price': $('input[name="product_price"]').val(),
+      };
+
+      // Envoyer les données au serveur (vous devrez peut-être ajuster cette partie selon votre configuration)
+      $.ajax({
+        type: 'POST',
+        url: '/predict_sales',
+        data: JSON.stringify(predictionData),
+        contentType: 'application/json',
+        success: function (response) {
+          // Vérifier le mode sélectionné
+          var selectedOption = $("#modeOption").val();
+          if (selectedOption === 'Sales Prediction') {
+            // Mettre à jour le message de prédiction pour les ventes
+            $("#salesPredictedValue").text(response.sales_prediction);
+            // Afficher la modal de prédiction pour les ventes
+            $("#predictionModal").modal("show");
+          } else if (selectedOption === 'Quantity of Product') {
+            // Mettre à jour le message de prédiction pour la quantité de produits
+            var predictedQuantity = "100,000"; // Remplacez cette valeur par la valeur prédite réelle
+            $("#predictedQuantityValue").text(predictedQuantity);
+            // Afficher la modal de prédiction pour la quantité de produits
+            $("#quantityPredictionModal").modal("show");
+          }
+        },
+        error: function (error) {
+          console.error('Erreur lors de la requête :', error);
+        }
+      });
+    });
+  });
+</script>
+
+
+
+
+
+
+<script>
+  document.getElementById('fileInput').addEventListener('change', function(e) {
+    var files = e.target.files;
+    if (files.length == 0) return;
+
+    var fileReader = new FileReader();
+    fileReader.onload = function(e) {
+      var data = new Uint8Array(e.target.result);
+      var workbook = XLSX.read(data, { type: 'array' });
+
+      // Supposons que le fichier Excel a une seule feuille, sinon ajustez en conséquence
+      var sheet = workbook.Sheets[workbook.SheetNames[0]];
+      var headerRow = XLSX.utils.sheet_to_json(sheet, { header: 1 })[0];
+
+      // Remplir les champs d'entrée du tableau HTML
+      var tableRows = document.querySelectorAll('.table tbody tr');
+      for (var i = 0; i < tableRows.length; i++) {
+        var thText = tableRows[i].querySelector('th').textContent;
+        var columnIndex = headerRow.indexOf(thText);
+
+        if (columnIndex !== -1) {
+          var cellValue = sheet[XLSX.utils.encode_cell({ c: columnIndex, r: 1 })].v;
+          tableRows[i].querySelector('input').value = cellValue;
+        }
+      }
+    };
+
+    fileReader.readAsArrayBuffer(files[0]);
+  });
+
+  document.getElementById('fileInputLabel').addEventListener('click', function() {
+    // Trigger the file input click
+    document.getElementById('fileInput').click();
+  });
+</script>
+
+</body>
+</html>

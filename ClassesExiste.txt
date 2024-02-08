@@ -1,0 +1,12 @@
+earphone
+furniture
+laptop
+mouse
+pants
+perfume
+phone
+sac
+shirt
+shoes
+tv
+watch

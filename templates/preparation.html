@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Page de Préparation</title>
+  <!-- Inclure Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <style>
+    body {
+      margin: 0; /* Supprimer la marge par défaut du corps */
+      overflow: hidden; /* Empêcher le défilement de la page pour une image en plein écran */
+    }
+
+    .page-container {
+      background-color: #f94213;
+      overflow: hidden;
+    }
+
+    .white-margins {
+      margin: 0 50px; /* Ajouter des marges verticales à gauche et à droite de la page */
+    }
+
+    .container {
+      position: relative;
+      text-align: center;
+      padding: 100px;
+      max-width: 800px; /* Ajustez la largeur maximale selon vos besoins */
+      margin: 0 auto; /* Centrer la div par rapport à la page */
+    }
+
+    #robot {
+      max-width: 300px;
+      margin-bottom: 20px;
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      animation: moveRobot 5s linear infinite;
+    }
+
+    .loading-message {
+      font-size: 18px;
+      margin-bottom: 20px;
+      color: #333; /* Couleur du texte */
+    }
+
+    .custom-progress-bar {
+      background-color: #28a745; /* Couleur de la barre de progression */
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .lead {
+      opacity: 0;
+      animation: fadeInUp 1s ease-out forwards;
+    }
+
+    .word {
+      display: inline-block;
+      opacity: 0;
+      animation: fadeInUp 1s ease-out forwards;
+      animation-delay: 0.2s; /* Décalage pour chaque mot */
+    }
+
+    .robot-image {
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      transition: box-shadow 0.3s ease;
+    }
+
+    .robot-image:hover {
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .lead {
+      opacity: 0;
+      animation: fadeInUp 1s ease-out forwards;
+    }
+
+    @keyframes moveRobot {
+      0% {
+        transform: translateX(-50%) translateY(0);
+      }
+      50% {
+        transform: translateX(-50%) translateY(-50px);
+      }
+      100% {
+        transform: translateX(-50%) translateY(0);
+      }
+    }
+
+    /* Style CSS pour positionner le nuage à côté gauche de l'image */
+    .cloud-container {
+      position: absolute;
+      top: 65%; /* Ajustez la position verticale selon vos besoins */
+      left: 1000px; /* Ajustez la position horizontale selon vos besoins */
+      transform: translateY(-50%); /* Centrer verticalement */
+    }
+    .ml-citation {
+      position: relative; /* Ajouter une position relative pour positionner le texte par rapport à cet élément */
+      background-color: #f94213;
+      padding: 20px;
+      border-radius: 50% 50% 40% 40%;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      max-width: 300px;
+      opacity: 0;
+      transform: translateY(20px) rotate(45deg);
+      animation: fadeInUp 1s ease-out infinite, moveUp 1s ease-out infinite;
+    }
+
+    .ml-citation p {
+      margin: 0; /* Supprimer les marges par défaut du paragraphe à l'intérieur */
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px) rotate(45deg);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) rotate(0deg);
+      }
+    }
+
+    @keyframes moveUp {
+      from {
+        transform: translateY(20px) rotate(45deg);
+      }
+      to {
+        transform: translateY(0) rotate(0deg);
+      }
+    }
+
+
+
+
+
+
+  </style>
+</head>
+<body>
+<div class="page-container">
+  <div class="white-margins">
+    <div class="container custom-container">
+      <div class="loading-message">Préparation de la page en cours...</div>
+      <div class="progress">
+        <div id="progressBar" class="progress-bar custom-progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+      </div>
+
+      <p class="lead">
+        <span class="word">Vous</span>
+        <span class="word">serez</span>
+        <span class="word">redirigé</span>
+        <span class="word">vers</span>
+        <span class="word">la</span>
+        <span class="word">page</span>
+        <span class="word">principale</span>
+        <span class="word">après</span>
+        <span class="word">le</span>
+        <span class="word">chargement</span>
+        <span class="word">complet.</span>
+      </p>
+    </div>
+  </div>
+</div>
+
+<img id="robot" src="{{ url_for('static', filename='/robot.png') }}" alt="Robot Welcome" class="robot-image">
+
+<div class="cloud-container">
+  <!-- Ajouter une citation sur le machine learning -->
+  <blockquote class="ml-citation">
+Le ML permet aux machines d'apprendre et de prendre des décisions sans être explicitement programmées à partir de données.  </blockquote>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+<script>
+  var progressBar = document.getElementById('progressBar');
+  var width = 0;
+  var interval = setInterval(function() {
+    if (width >= 100) {
+      clearInterval(interval);
+      // Rediriger vers la page form.html après le chargement complet
+      setTimeout(function() {
+        window.location.href = '{{ url_for("analyze") }}';
+      }, 1000);
+    } else {
+      width++;
+      progressBar.style.width = width + '%';
+      progressBar.innerHTML = width + '%';
+    }
+  }, 50);
+</script>
+</body>
+</html>
