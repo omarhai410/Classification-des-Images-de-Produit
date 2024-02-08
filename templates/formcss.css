@@ -1,0 +1,82 @@
+.hidden {
+  display: none;
+}
+body {
+  background-image: none; /* Supprime l'image de fond */
+  background-color: #87CEEB; /* Couleur bleu ciel de fond */
+
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+.table th, .table td {
+  border-bottom: 1px solid #87CEEB; /* Changez cette couleur selon vos préférences */
+}
+
+.table tr {
+  background-color: white; /* Remplacez cette couleur par la teinte de gris de votre choix */
+}
+
+
+.footer {
+  display: none; /* Par défaut, masquez le pied de page */
+  background: linear-gradient(to bottom, gray, blue);
+  color: #fff; /* Couleur du texte */
+  padding: 20px; /* Ajoutez de la marge à l'intérieur du pied de page */
+  text-align: center; /* Centrez le texte */
+}
+
+/* Add CSS styles for animation */
+@keyframes changeHeadingAnimation {
+  0% { transform: translateY(0); opacity: 1; }
+  25% { transform: translateY(-20px); opacity: 0.75; }
+  50% { transform: translateY(0); opacity: 1; }
+  75% { transform: translateY(20px); opacity: 0.75; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+#dynamicHeading {
+  color: white; /* Set text color to be visible on the image */
+  animation: changeHeadingAnimation 4s infinite;
+}
+
+.custom-bordered-table {
+  border: 2px solid blue;
+  background-color: white; /* Arrière-plan blanc */
+}
+
+.custom-bordered-table td {
+  border: 2px solid blue;
+}
+
+.table-container {
+  margin-top: 20px; /* Ajustez la valeur selon vos besoins */
+}
+
+th, td {
+  display: block;
+  margin-bottom: 10px; /* Ajoutez une marge entre chaque élément pour l'espacement */
+}
+
+/* Define initial styles for the th and td elements */
+.table td {
+  transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+.table th {
+  transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+/* Define styles for the th and td elements when hovered */
+
+.table td:hover {
+  background-color: lightblue; /* Change the background color */
+  transform: scale(1.1); /* Grow the size by 10% */
+}
+.table th:hover {
+  background-color: lightblue; /* Change the background color */
+  transform: scale(1.1); /* Grow the size by 10% */
+}
+.footer {
+  background-color: #f8f9fa;
+  padding: 20px 0;
+}

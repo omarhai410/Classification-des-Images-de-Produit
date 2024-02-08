@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Page</title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+  <\head>
+  <style>
+
+    .category-list {
+      list-style-type: none;
+    }
+
+    .subcategory-list {
+      list-style-type: none;
+      padding-left: 20px;
+    }
+
+    .menu-column {
+      display: inline-block;
+      vertical-align: top;
+      margin: 10px;
+    }
+
+    .navbar-nav {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      background: linear-gradient(to right, #777, #007bff);
+      border-radius: 5px;
+      overflow: hidden;
+    }
+
+    .nav-item {
+      margin: 0;
+      border-right: 1px solid white; /* Ajouter un séparateur entre les éléments du menu */
+      padding: 0 10px; /* Ajouter un espace autour du texte du menu */
+    }
+
+    .nav-item:last-child {
+      border-right: none; /* Ne pas ajouter de séparateur après le dernier élément du menu */
+    }
+
+    .nav-link {
+      color: white;
+      font-weight: bold;
+    }
+
+    .nav-link:hover {
+      color: #f8f9fa;
+    }
+
+    .navbar-toggler {
+      border-color: #f8f9fa;
+    }
+
+    .navbar-toggler-icon {
+      background-color: #f8f9fa;
+    }
+
+    /* Styles pour le profil utilisateur */
+    .user-profile {
+      text-align: center;
+      margin: 20px;
+      display: flex;
+      align-items: center;
+    }
+
+    #profile-image {
+      max-width: 70px;
+      max-height: 70px;
+      margin-right: 10px;
+      border-radius: 70%; /* Make it circular */
+      overflow: hidden;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .inline-block-container {
+      display: inline-block;
+    }
+
+    .search-form {
+      margin-right: 15px;
+    }
+
+    .gold-icon {
+      color: gold;
+    }
+
+    body {
+      background-color: #f8f9fa; /* Bootstrap default background color */
+    }
+
+    .content-wrapper {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      margin-top: 20px;
+      background-color: #ffffff; /* White background color for the wrapper */
+    }
+
+    h1 {
+      color: #007bff; /* Bootstrap primary color for the heading */
+    }
+
+    .alert {
+      background-color: #f8d7da; /* Bootstrap alert-danger background color */
+      border-color: #f5c6cb; /* Bootstrap alert-danger border color */
+      color: #721c24; /* Bootstrap alert-danger text color */
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      border: 2px solid #007bff; /* Blue border for the image */
+      border-radius: 8px; /* Rounded corners for the image */
+      margin-top: 20px;
+      transition: transform 0.3s ease-in-out; /* Smooth transition effect */
+    }
+
+    img:hover {
+      transform: scale(1.1); /* Scale the image on hover */
+    }
+
+    p {
+      margin-bottom: 10px;
+      color: #495057; /* Default text color */
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    input[type="file"] {
+      display: none; /* Hide the default file input */
+    }
+
+    label[for="file"] {
+      background-color: #007bff; /* Bootstrap primary color for the label background */
+      color: #ffffff; /* White text color for the label */
+      padding: 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      display: inline-block;
+    }
+
+    label[for="file"]:hover {
+      background-color: #0056b3; /* Darker color on hover */
+    }
+
+    .btn-primary {
+      background-color: #007bff; /* Bootstrap primary color for the button background */
+      border-color: #007bff; /* Bootstrap primary color for the button border */
+    }
+
+    .btn-primary:hover {
+      background-color: #0056b3; /* Darker color on hover */
+      border-color: #0056b3; /* Darker color on hover */
+    }
+
+    /* Style for the blue border */
+    .result-container {
+      border: 2px solid #007bff; /* Blue border */
+      border-radius: 8px;
+      padding: 15px;
+      margin-top: 15px;
+    }
+
+    /* Additional styles for the text within the result container */
+    .result-text {
+      font-size: 18px;
+      font-weight: bold;
+      color: #007bff; /* Blue color for the text within the container */
+    }
+
+    .footer {
+      background-color: #343a40;
+      color: #ffffff;
+      padding: 30px 0;
+      margin-top: 20px;
+    }
+
+    .footer a {
+      color: #ffffff;
+    }
+
+    .footer a:hover {
+      color: #007bff;
+    }
+
+  #image-container {
+    display: flex;
+    gap: 20px; /* Adjust spacing between items */
+    margin: 20px 0; /* Add margin for spacing */
+    justify-content: center; /* Center items horizontally */
+  }
+
+.image-item {
+    width: 150px;
+    height: 200px; /* Set a fixed height for each item */
+    border: 2px solid #007bff;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out;
+  }
+
+
+  .image-item img {
+    width: 100%; /* Make images fill the container width */
+    height: auto;
+  }
+
+  .image-description {
+    padding: 10px;
+    text-align: center;
+  }
+    #prev-button, #next-button {
+      background-color: #3498db;
+      color: #fff;
+      padding: 10px;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+    }
+     .custom-navbar {
+    background-color: white;
+  }
+     .image-container {
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.image-container:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+  </style>
+</head>
+
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light shadow">
+  <div class="container">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <div class="menu-column">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="#" onclick="handleClick('Home')">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" onclick="handleClick('About')">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" onclick="handleClick('Services')">Services</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" onclick="handleClick('Contact')">Contact</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" onclick="handleClick('Products')">Products</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" onclick="handleClick('Blog')">Blog</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" onclick="handleClick('Gallery')">Gallery</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="container mt-3">
+      <div class="d-flex">
+        <form class="form-inline">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fas fa-search"></i></span>
+            </div>
+            <input type="text" class="form-control" placeholder="Rechercher..." id="searchInput">
+          </div>
+        </form>
+      </div>
+
+      <div class="user-profile">
+        <img src="" alt="Profile Image" id="profile-image">
+        <p id="user-name">OMAR HAI</p>
+      </div>
+    </div>
+</nav>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    var profileImage = document.getElementById('profile-image');
+
+    // Attribuer le chemin de l'image par défaut (dans le même répertoire que le HTML)
+    // Créer un élément pour afficher l'image
+    // Utiliser "const" pour déclarer une constante
+    const profileImageElement = document.getElementById("profile-image");
+
+    // Récupérer la valeur de l'image
+    const profileImageUrl = "/static/omar.png";
+
+    // Mettre à jour l'élément d'affichage
+    profileImageElement.src = profileImageUrl;
+
+    // Fonction pour gérer le clic sur le menu
+    function handleClick(menuItem) {
+      alert('Clicked: ' + menuItem);
+    }
+  });
+
+
+
+
+
+</script>
+
+<script>
+  document.getElementById('searchForm').addEventListener('submit', function (e) {
+    e.preventDefault(); // Empêcher la soumission du formulaire
+    performSearch();
+  });
+
+  document.getElementById('searchInput').addEventListener('input', function () {
+    // Vous pouvez ajouter des actions supplémentaires lors de la saisie dans le champ de recherche si nécessaire
+  });
+
+  function performSearch() {
+    // Ajoutez ici le code pour effectuer la recherche
+    var searchTerm = document.getElementById('searchInput').value;
+    console.log('Recherche effectuée avec le terme :', searchTerm);
+    // Vous pouvez ajouter du code pour traiter les résultats de la recherche
+  }
+</script>
+<!-- Add this script in the <head> section of your HTML -->
+<script>
+  var imageDetails = [
+    { path: "{{ url_for('static', filename='Headphones/1.jpg') }}", brand: "Samsung CU23", price: "99.99 MAD" },
+    { path: "{{ url_for('static', filename='Headphones/2.jpg') }}", brand: "LG 50", price: "129.99 MAD" },
+    { path: "{{ url_for('static', filename='Headphones/3.jpg') }}", brand: "Huawei pro 3", price: "79.99 MAD" },
+    { path: "{{ url_for('static', filename='Headphones/4.jpg') }}", brand: "Xiaomi bend", price: "149.99 MAD" },
+    { path: "{{ url_for('static', filename='Headphones/5.jpg') }}", brand: "Brand 89", price: "109.99 MAD" },
+    { path: "{{ url_for('static', filename='Headphones/6.jpg') }}", brand: "Ecouteurs Br 78", price: "109.99 MAD" }
+
+  ];
+
+  var currentIndex = 0;
+  var imagesPerPage = 3;
+
+  document.addEventListener("DOMContentLoaded", function () {
+  function displayImages(startIndex) {
+    var imageContainer = document.getElementById('image-container');
+    imageContainer.innerHTML = '';
+
+    for (var i = startIndex; i < Math.min(startIndex + imagesPerPage, imageDetails.length); i++) {
+      var imageItem = document.createElement('div');
+      imageItem.classList.add('col-md-4', 'mb-4', 'image-container');
+
+      var img = document.createElement('img');
+      img.src = imageDetails[i].path;
+      img.classList.add('img-fluid', 'rounded');
+
+      var description = document.createElement('div');
+      description.classList.add('card', 'text-center');
+
+      var cardBody = document.createElement('div');
+      cardBody.classList.add('card-body');
+
+      var brand = document.createElement('p');
+      brand.classList.add('card-text');
+      brand.innerHTML = imageDetails[i].brand;
+
+      var price = document.createElement('p');
+      price.classList.add('card-text');
+      price.innerHTML = imageDetails[i].price;
+
+      cardBody.appendChild(brand);
+      cardBody.appendChild(price);
+
+      description.appendChild(img);
+      description.appendChild(cardBody);
+
+      imageItem.appendChild(description);
+
+      imageContainer.appendChild(imageItem);
+    }
+  }
+
+  // Initial display
+  displayImages(currentIndex);
+
+  function showNextImages() {
+    if (currentIndex + imagesPerPage < imageDetails.length) {
+      currentIndex += imagesPerPage;
+      displayImages(currentIndex);
+    }
+  }
+
+  function showPreviousImages() {
+    if (currentIndex - imagesPerPage >= 0) {
+      currentIndex -= imagesPerPage;
+      displayImages(currentIndex);
+    }
+  }
+
+  document.getElementById('next-button').addEventListener('click', showNextImages);
+  document.getElementById('prev-button').addEventListener('click', showPreviousImages);
+});
+
+</script>
+
+
+<div class="container mt-4">
+  <h2 id="dynamicHeading" class="mb-4">Products</h2>
+
+  <form>
+    <div class="form-group">
+      <label for="category">Select Category:</label>
+      <select id="category" class="form-control">
+        <option value="audio_video">AUDIO & VIDEO</option>
+        <option value="health_fitness">HEALTH & FITNESS</option>
+        <option value="smart_home">SMART HOME</option>
+        <option value="mobile_accessories">MOBILE ACCESSORIES</option>
+        <option value="pc_peripherals">PC PERIPHERALS</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="subcategory">Select Subcategory:</label>
+      <select id="subcategory" class="form-control">
+      </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Filter</button>
+    <!-- Add this div where you want the images to be displayed -->
+<div id="image-container" class="mt-4"></div>
+ <button id="prev-button"><i class="fas fa-chevron-left"></i> Previous</button>
+<button id="next-button">Next <i class="fas fa-chevron-right"></i></button>
+
+
+  </form>
+
+  <ul class="list-group">
+  </ul>
+</div>
+
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+  // Votre script ici
+  $(document).ready(function () {
+    // Données des sous-catégories pour chaque catégorie
+    const subcategories = {
+      audio_video: ['Headphones', 'Speakers', 'Action Cameras', 'TV Wall Mount'],
+      health_fitness: ['Fitness Trackers', 'Smart Watches', 'Smart Scales'],
+      smart_home: ['Wi-Fi Cameras', 'Power Supply', 'Lighting', 'Sensors'],
+      mobile_accessories: ['Power Banks', 'Chargers', 'Cables', 'Phone Holders', 'Screen Protectors'],
+      pc_peripherals: ['Mice', 'Keyboards', 'Gaming Devices', 'USB Hubs & Card Readers', 'Batteries', 'Office Accessories']
+    };
+
+    // Remplir la liste des sous-catégories en fonction de la catégorie sélectionnée
+    $('#category').change(function () {
+      const selectedCategory = $(this).val();
+      const subcategoryDropdown = $('#subcategory');
+
+      // Vider la liste des sous-catégories actuelle
+      subcategoryDropdown.empty();
+
+      // Remplir la liste des sous-catégories en fonction de la catégorie sélectionnée
+      subcategories[selectedCategory].forEach(function (subcategory) {
+        subcategoryDropdown.append($('<option></option>').text(subcategory));
+      });
+    });
+  });
+</script>
+
+
+</head>
+<body class="container">
+
+<div class="content-wrapper">
+  <h1>Image Classification Result</h1>
+
+  {% if error %}
+  <div class="alert alert-danger" role="alert">
+    {{ error }}
+  </div>
+  {% elif filename %}
+  <!-- Commented out the filename display -->
+  <!-- <p>Uploaded Image: {{ filename }}</p> -->
+  <div class="row">
+    <div class="col-md-6">
+      <img src="{{ url_for('static', filename='uploads/' + filename) }}" alt="Uploaded Image" class="img-fluid">
+    </div>
+    <div class="col-md-6">
+      <div class="result-container">
+        <p class="result-text">Predicted Class: {{ class_name }}</p>
+        <p class="result-text">Confidence Score: {{ confidence_score }}</p>
+      </div>
+    </div>
+  </div>
+  {% else %}
+  <p>No file uploaded yet.</p>
+  {% endif %}
+
+  <form method="post" enctype="multipart/form-data" class="mt-4">
+    <div class="form-group">
+      <label for="file">Choose an image file:</label>
+      <input type="file" name="file" id="file" accept=".jpg, .jpeg, .png" class="form-control-file" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Upload and Predict</button>
+  </form>
+</div>
+
+<div class="row mt-4">
+  <div class="col-md-12">
+    {% if similar_image_urls %}
+    <h2>Similar Images</h2>
+    <div class="row">
+      {% for image_url in similar_image_urls %}
+      <div class="col-md-4">
+        <a href="{{ image_url }}" class="btn btn-primary" target="_blank">View Similar Image</a>
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <h4><i class="fas fa-user"></i> OMAR HAI / ENSAH</h4>
+        <p>&copy; 2023 Tous droits réservés.</p>
+      </div>
+      <div class="col-md-4">
+        <h4><i class="fas fa-envelope"></i> Contactez-nous</h4>
+        <p><i class="far fa-envelope"></i> Email: <a href="mailto:omar.hai@etu.uae.ac.ma">omar.hai@etu.uae.ac.ma</a></p>
+        <p><i class="fas fa-phone"></i> Téléphone: +212 6 49 20 59 89 </p>
+        <p><i class="fas fa-map-marker-alt"></i> Adresse: Votre adresse ici</p>
+      </div>
+      <div class="col-md-4">
+        <h4><i class="fas fa-share-alt"></i> Suivez-nous</h4>
+        <a href="https://www.facebook.com/profile.php?id=100039967148784" target="_blank"><i class="fab fa-facebook"></i> Facebook</a>
+        <a href="https://twitter.com/votrepage" target="_blank"><i class="fab fa-twitter"></i> Twitter</a>
+        <a href="https://www.linkedin.com/in/omar-hai-b75b32207/" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+      </div>
+    </div>
+  </div>
+  <!-- Intégrer la carte Google Maps -->
+  <div class="separator"></div>
+  <div class="container mt-4">
+    <iframe width="100%" height="300" frameborder="0" style="border:0"
+            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13045.419024695457!2d-3.8620479!3d35.1727096!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd742cdef50e1b29%3A0x19897f71ba224d93!2s%C3%89cole%20nationale%20des%20sciences%20appliqu%C3%A9es%20d&#39;Alhoceima!5e0!3m2!1sfr!2sma!4v1703089596134!5m2!1sfr!2sma"
+            allowfullscreen>
+    </iframe>
+  </div>
+</footer>
+
+
+</body>
+</html>

@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.1/xlsx.full.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh+WyBDqfV9OgJ93AgyRtX+K/70GJ5q2t0U" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-star-rating/4.0.6/css/star-rating.min.css"
+        integrity="sha384-i5+6S/FfWp9L+Y5aSW69eOU0r6LwZp6j8gTJ/jlEhhG6FGqhQbeWuFa3cA/q5nD9" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+          integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+          crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+          integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+          crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+          integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+          crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-star-rating/4.0.6/js/star-rating.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-star-rating/4.0.6/css/star-rating.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-star-rating/4.0.6/js/star-rating.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <!-- Ajouter la bibliothèque Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Bootstrap JS (optionnel, mais nécessaire pour certaines fonctionnalités) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <title>Linear Regression Prediction</title>
+  <style>
+    .hidden {
+      display: none;
+    }
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f8f9fa;
+      color: saddlebrown;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+
+    .table-container {
+      margin-top: 20px;
+      background-color: #ffffff;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+    }
+
+    .list-group-item {
+      border: none;
+      border-bottom: 1px solid #dee2e6;
+    }
+
+    h2 {
+      color: #007bff;
+    }
+
+    th.sales-prediction-columns {
+      font-weight: bold;
+    }
+
+    #inputForm {
+      margin-top: 20px;
+    }
+
+    .btn-primary {
+      background-color: #007bff;
+      border-color: #007bff;
+    }
+
+    .btn-primary:hover {
+      background-color: #0056b3;
+      border-color: #0056b3;
+    }
+
+    .modal-content {
+      background-color: #ffffff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+    }
+
+    .footer {
+      background-color: #343a40;
+      color: #ffffff;
+      padding: 30px 0;
+      margin-top: 20px;
+    }
+
+    .footer a {
+      color: #ffffff;
+    }
+
+    .footer a:hover {
+      color: #007bff;
+    }
+    .small-table {
+      width: 50%; /* Vous pouvez ajuster la valeur en fonction de la taille souhaitée */
+      margin: auto; /* Pour centrer la table sur la page */
+    }
+    .custom-border-gold {
+      border: 2px solid #f94213;
+      background-color: #f94213;
+      color: white;
+      padding: 15px; /* Vous pouvez ajuster la valeur de remplissage selon vos besoins */
+      display: inline-block;
+      max-width: 75%; /* Ajustez la largeur maximale selon vos besoins */
+      box-sizing: border-box; /* Pour inclure le rembourrage dans la largeur maximale */
+    }
+    .form-group {
+      width: 50%; /* Ajustez la largeur selon vos besoins */
+      display: inline-block;
+      margin-bottom: 0; /* Supprime la marge inférieure par défaut */
+    }
+
+    .container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    label {
+      font-size: 18px;
+      color: #333;
+      margin-right: 10px;
+    }
+
+    select {
+      width: 200px;
+      padding: 8px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      color: #555;
+      vertical-align: middle;
+    }
+
+    select:focus {
+      outline: none;
+      border-color: #007bff;
+    }
+
+    option {
+      font-size: 16px;
+    }
+    /* Ajout de styles CSS personnalisés */
+    .footer {
+      background-color: #343a40;
+      color: white;
+      padding: 30px 0;
+    }
+
+    .footer h4 {
+      color: #61dafb; /* Couleur bleue pour les titres */
+    }
+
+    .footer p {
+      margin-bottom: 10px;
+    }
+
+    .footer a {
+      color: white;
+      text-decoration: none;
+    }
+
+    .footer a:hover {
+      color: #61dafb; /* Couleur bleue au survol des liens */
+    }
+
+    .footer iframe {
+      border: none; /* Supprimer la bordure autour de la carte Google Maps */
+    }
+    .table tbody tr:hover {
+      background-color: #f1d1cb; /* Couleur de fond au survol */
+    }
+
+    .table tbody tr:hover th,
+    .table tbody tr:hover td {
+      color: #333; /* Couleur du texte au survol */
+    }
+    /* Ajout de séparateurs entre les sections */
+    .footer .separator {
+      height: 1px;
+      background-color: #61dafb; /* Couleur bleue pour le séparateur */
+      margin: 15px 0; /* Marge autour du séparateur */
+    }
+    .menu-column {
+      display: inline-block;
+      vertical-align: top;
+      margin: 10px;
+    }
+
+    /* Ajouter un séparateur et augmenter la longueur du menu */
+    .navbar-nav {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      background: linear-gradient(to right, #777, #007bff);
+      border-radius: 5px;
+      overflow: hidden;
+    }
+
+    .nav-item {
+      margin: 0;
+      border-right: 1px solid white; /* Ajouter un séparateur entre les éléments du menu */
+      padding: 0 10px; /* Ajouter un espace autour du texte du menu */
+    }
+
+    .nav-item:last-child {
+      border-right: none; /* Ne pas ajouter de séparateur après le dernier élément du menu */
+    }
+
+    .nav-link {
+      color: white;
+      font-weight: bold;
+    }
+
+    .nav-link:hover {
+      color: #f8f9fa;
+    }
+
+    .navbar-toggler {
+      border-color: #f8f9fa;
+    }
+
+    .navbar-toggler-icon {
+      background-color: #f8f9fa;
+    }
+
+    /* Styles pour le profil utilisateur */
+    .user-profile {
+      text-align: center;
+      margin: 20px;
+      display: flex;
+      align-items: center;
+    }
+
+    #profile-image {
+      max-width: 70px;
+      max-height: 70px;
+      margin-right: 10px;
+      border-radius: 70%; /* Make it circular */
+      overflow: hidden;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .inline-block-container {
+      display: inline-block;
+    }
+
+    .search-form {
+      margin-right: 15px;
+    }
+
+    .gold-icon {
+      color: gold;
+    }
+
+    /* Cacher la sous-menu par défaut */
+    .submenu {
+      display: none;
+      position: absolute;
+    }
+
+    /* Afficher la sous-menu lorsque survolé */
+    .nav-item-with-submenu:hover .submenu {
+      display: block;
+    }
+
+    /* Ajouter une bordure ou une marge entre les sections */
+    .nav-item {
+      border-right: 1px solid #ccc; /* Vous pouvez ajuster la couleur et l'épaisseur selon vos besoins */
+      padding-right: 10px; /* Ajustez la marge à droite pour créer de l'espace */
+    }
+
+    /* Supprimer la bordure à droite du dernier élément */
+    .nav-item:last-child {
+      border-right: none;
+    }
+
+    /* Style similaire pour les liens de la sous-menu */
+    .submenu li {
+      border-right: 1px solid #ccc; /* Vous pouvez ajuster la couleur et l'épaisseur selon vos besoins */
+      padding-right: 10px; /* Ajustez la marge à droite pour créer de l'espace */
+    }
+
+    /* Supprimer la bordure à droite du dernier élément de la sous-menu */
+    .submenu li:last-child {
+      border-right: none;
+    }
+
+    /* Style des liens de la sous-menu */
+    .submenu a {
+      color: #333; /* Couleur du texte pour les liens */
+      background-color: #f8f9fa; /* Couleur de fond pour les liens */
+      text-decoration: none; /* Supprimer le soulignement des liens */
+      display: block; /* Les liens occupent tout l'espace disponible */
+      padding: 10px; /* Ajoutez de l'espace autour du texte du lien */
+    }
+
+    /* Style au survol des liens de la sous-menu */
+    .submenu a:hover {
+      background-color: #eee; /* Couleur de fond au survol */
+    }
+    /* Style des liens de la sous-menu */
+
+    .submenu a {
+      color: #333; /* Couleur du texte pour les liens */
+      background-color: #f8f9fa; /* Couleur de fond pour les liens */
+      text-decoration: none; /* Supprimer le soulignement des liens */
+      display: block; /* Les liens occupent tout l'espace disponible */
+      padding: 10px; /* Ajoutez de l'espace autour du texte du lien */
+      border-bottom: 1px solid #fff; /* Séparateur horizontal entre chaque catégorie */
+    }
+
+    /* Supprimer la bordure en bas du dernier élément de la sous-menu */
+    .submenu li:last-child a {
+      border-bottom: none;
+    }
+    #inputForm {
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Adjust the values as needed */
+      padding: 20px; /* Optional: Add padding to give space for the shadow */
+    }
+    .user-profile {
+      display: flex;
+      align-items: center;
+    }
+
+    .user-profile img, .user-profile::before {
+      border-radius: 50%;
+      border: 2px solid #000;
+      padding: 2px;
+    }
+
+    .user-profile img {
+      transition: opacity 0.3s ease-in-out;
+      margin-right: 3px;
+    }
+
+    .user-profile p {
+      margin: 0;
+    }
+
+    .user-profile:hover img {
+      opacity: 0;
+    }
+
+    .user-profile:hover::before {
+      content: '\f007';
+      font-family: 'Font Awesome 5 Free';
+      font-size: 36px;
+      color: #333;
+      margin-right: 3px; /* Adjust margin between icon and text */
+      margin-left: 3px; /* Set the same margin as the image */
+    }
+
+    #inputForm {
+      background-color: #f5f5f5; /* Choose your preferred background color */
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Choose your preferred shadow color and adjust the values */
+      padding: 20px; /* Optional: Add padding for better visual appearance */
+    }
+
+    /* Add this to remove the default border around the form */
+    #inputForm, #inputForm * {
+      border: none;
+    }
+
+    /* Add this to style the container and label */
+    .container {
+      margin-bottom: 15px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    /* Add this to style the buttons */
+    .btn {
+      margin-right: 10px;
+    }
+     #detailsSection {
+       margin-top: 20px; /* Adjust the top margin as needed */
+     }
+
+    #commentInput,
+    #genderSelect,
+    #countryInput
+     {
+      margin-bottom: 15px; /* Adjust the bottom margin as needed */
+    }
+    .rating input {
+      display: none;
+    }
+    .rating label {
+      display: inline-block;
+    }
+
+    .my-label-class {
+      color: #007bff; /* Couleur du texte du label */
+    }
+
+    .my-select-class,
+    .my-input-class,
+    .custom-input-class {
+      border: 2px solid #007bff; /* Couleur de la bordure des champs de saisie */
+    }
+
+    .rating input[type="radio"] {
+      display: none;
+    }
+    .custom-truncated-border {
+      border: 1px solid #007bff; /* Couleur de la bordure, remplacez #007bff par la couleur de votre choix */
+      overflow: hidden;
+    }
+
+
+
+
+
+  </style>
+
+</head>
+<body>
+<div class="panel" style="background-color: white;">
+  <nav class="navbar navbar-expand-lg navbar-light">
+    <div class="container">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+              aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <div class="menu-column">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="#" onclick="handleClick('Home')">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#" onclick="handleClick('About')">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/analyze" onclick="handleClick('Analyze')">Analyzes</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#" onclick="handleClick('Contact')">Contact</a>
+            </li>
+            <li class="nav-item" >
+              <div class="nav-item-with-submenu">
+                <a class="nav-link" href="#" onclick="handleClick('Products')">Products</a>
+                <ul class="submenu list-unstyled" style="background: linear-gradient(to right, #777, #007bff);">
+                  <li><a href="#" class="nav-link" style="background: linear-gradient(to right, #777, #007bff);">audio_video</a></li>
+                  <li><a href="#" class="nav-link" style="background: linear-gradient(to right, #777, #007bff);">health_fitness</a></li>
+                  <li><a href="#" class="nav-link" style="background: linear-gradient(to right, #777, #007bff);">smart_home</a></li>
+                  <li><a href="#" class="nav-link" style="background: linear-gradient(to right, #777, #007bff);">mobile_accessories</a></li>
+
+                </ul>
+              </div>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#" onclick="handleClick('Blog')">Blog</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#" onclick="handleClick('Gallery')">Gallery</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="container mt-3">
+        <form class="form-inline">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <!-- Icône de recherche orange -->
+              <span class="input-group-text gold-icon" id="search-icon">
+            <i class="fas fa-search"></i>
+         </span>
+            </div>
+            <input type="text" class="form-control" placeholder="Rechercher..." id="searchInput">
+          </div>
+        </form>
+        <!-- Profil utilisateur à droite du menu -->
+        <div class="user-profile">
+          <img src="" alt="Profile Image" id="profile-image">
+          <p id="user-name">OMAR HAI</p>
+        </div>
+      </div>
+    </div>
+  </nav>
+</div>
+
+<div style="margin-top: 20px;"></div>
+
+
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    var profileImage = document.getElementById('profile-image');
+
+
+    const profileImageElement = document.getElementById("profile-image");
+
+    const profileImageUrl = "/static/omar.png";
+
+    profileImageElement.src = profileImageUrl;
+
+    function handleClick(menuItem) {
+      alert('Clicked: ' + menuItem);
+    }
+  });
+
+
+
+
+
+</script>
+
+<script>
+  document.getElementById('search-icon').addEventListener('click', function (event) {
+    event.preventDefault(); // Empêche la soumission du formulaire
+    performSearch();
+  });
+
+  function performSearch() {
+    // Ajoutez ici le code pour effectuer la recherche
+    var searchTerm = document.getElementById('searchInput').value;
+    console.log('Recherche effectuée avec le terme :', searchTerm);
+    // Vous pouvez ajouter du code pour traiter les résultats de la recherche
+  }
+</script>
+
+
+<div class="container table-container">
+  <div class="custom-control custom-switch mt-3">
+    <input type="checkbox" class="custom-control-input" id="toggleSwitch">
+    <label class="custom-control-label" for="toggleSwitch"><span id="toggleText"></span></label>
+  </div>
+
+
+  <ul class="list-group shadow-lg border" id="contentList">
+    <li class="list-group-item list-group-item-action"><strong>Théoriquement, l'objectif principal de cette page est de faciliter la prédiction des ventes et de la quantité de produits. Voici quelques points clés liés à cet objectif :</strong></li>
+    <li class="list-group-item list-group-item-action"><strong>Collecte de Données Précises :</strong> Les champs du formulaire capturent des données spécifiques liées aux transactions commerciales, aux produits, et aux clients. Ces données sont essentielles pour établir des modèles de prédiction.</li>
+    <li class="list-group-item list-group-item-action"><strong>Paramètres de Prédiction :</strong> Les différents champs du formulaire représentent des paramètres qui peuvent influencer les prédictions de ventes et de quantités de produits.</li>
+    <li class="list-group-item list-group-item-action"><strong>Analyse Statistique :</strong> En soumettant ces données, l'utilisateur peut potentiellement alimenter des modèles d'analyse statistique ou d'apprentissage machine.</li>
+    <li class="list-group-item list-group-item-action"><strong>Optimisation des Prévisions :</strong> Les prédictions obtenues peuvent être utilisées pour optimiser la planification des stocks, les stratégies de vente, et d'autres aspects opérationnels.</li>
+    <li class="list-group-item list-group-item-action"><strong>Amélioration des Stratégies Commerciales :</strong> En comprenant mieux les facteurs qui influent sur les ventes et la demande de produits, une entreprise pourrait ajuster ses stratégies commerciales.</li>
+    <li class="list-group-item list-group-item-action"><strong>Réduction des Risques :</strong> En disposant de prévisions plus précises, une entreprise peut réduire les risques liés aux excédents ou aux pénuries de stocks.</li>
+  </ul>
+</div>
+<h2 id="dynamicHeading" class="mb-4 text-center custom-border-gold mx-auto d-block">Prediction of Sales and Quantity of Products</h2>
+
+<form class="shadow-lg p-4 mb-5 bg-body rounded border border-5 border-primary col-8 mx-auto justify-content-center" id="inputForm">
+
+  <div class="container ">
+    <label  for="options">Choisissez une option :</label>
+    <select id="options" name="options" class="form-select border border-2 border-primary">
+      <option value="salesPrediction">Sales Prediction</option>
+      <option value="quantityOfProduct">Quantity of Product</option>
+    </select>
+  </div>
+
+  <table class="table small-table">
+    <tbody>
+    <tr class="common-columns sales-prediction-columns">
+      <th>Benefit per order</th>
+      <td><input type="text" name="benefit_per_order" id="benefit"></td>
+    </tr>
+    <tr class="common-columns sales-prediction-columns">
+      <th>Category Name</th>
+      <td><input type="text" name="category_name" id="category"></td>
+    </tr>
+    <tr class="common-columns sales-prediction-columns">
+      <th>Order Item Discount</th>
+      <td><input type="text" name="order_item_discount" id="discount"></td>
+    </tr>
+    <tr class="common-columns sales-prediction-columns">
+      <th>Order Item Total</th>
+      <td><input type="text" name="order_item_total" id="orderTotal"></td>
+    </tr>
+    <tr class="common-columns sales-prediction-columns">
+      <th>Order Profit Per Order</th>
+      <td><input type="text" name="order_profit_per_order" id="profitPerOrder"></td>
+    </tr>
+    <tr class="common-columns sales-prediction-columns">
+      <th>Product Image</th>
+      <td><input type="text" name="product_image" id="productImage"></td>
+    </tr>
+    <tr class="common-columns sales-prediction-columns">
+      <th>Product Name</th>
+      <td><input type="text" name="product_name" id="productName"></td>
+    </tr>
+    <tr class="common-columns sales-prediction-columns">
+      <th>Product Price</th>
+      <td><input type="text" name="product_price" id="productPrice"></td>
+    </tr>
+
+    <tr class="common-columns quantity-of-product-columns" style="display: none;">
+      <th>Department Id</th>
+      <td><input type="text" name="department_id" id="departmentId"></td>
+    </tr>
+    <tr class="common-columns quantity-of-product-columns" style="display: none;">
+      <th>Department Name</th>
+      <td><input type="text" name="department_name" id="departmentName"></td>
+    </tr>
+    <tr class="common-columns quantity-of-product-columns" style="display: none;">
+      <th>Sales</th>
+      <td><input type="text" name="sales" id="sales"></td>
+    </tr>
+    <tr class="common-columns quantity-of-product-columns" style="display: none;">
+      <th>Order Item Total</th>
+      <td><input type="text" name="quantity_order_item_total" id="quantityOrderTotal"></td>
+    </tr>
+    <tr class="common-columns quantity-of-product-columns" style="display: none;">
+      <th>Product Card Id</th>
+      <td><input type="text" name="product_card_id" id="productCardId"></td>
+    </tr>
+    <tr class="common-columns quantity-of-product-columns" style="display: none;">
+      <th>Product Category Id</th>
+      <td><input type="text" name="product_category_id" id="productCategoryId"></td>
+    </tr>
+    <tr class="common-columns quantity-of-product-columns" style="display: none;">
+      <th>Product Image</th>
+      <td><input type="text" name="quantity_product_image" id="quantityProductImage"></td>
+    </tr>
+    <tr class="common-columns quantity-of-product-columns" style="display: none;">
+      <th>Product Name</th>
+      <td><input type="text" name="quantity_product_name" id="quantityProductName"></td>
+    </tr>
+    <tr class="common-columns quantity-of-product-columns" style="display: none;">
+      <th>Product Price</th>
+      <td><input type="text" name="quantity_product_price" id="quantityProductPrice"></td>
+    </tr>
+    </tbody>
+  </table>
+
+  <div class="text-center">
+    <button type="button" class="btn btn-primary mx-2 mb-5" onclick="predictSales()">Predict Sales</button>
+    <button type="button" class="btn btn-primary mx-2 mb-5" id="fileInputLabel">Importer XLSX</button>
+    <input type="file" id="fileInput" class="btn btn-primary" accept=".xlsx" style="display:none;">
+    <button type="button" class="btn btn-primary mx-2 mb-5" onclick="predict()">Predict</button>
+  </div>
+
+</form>
+<div class="modal fade" id="predictionModal" tabindex="-1" role="dialog" aria-labelledby="predictionModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: #007bff; color: #ffffff;">
+        <h5 class="modal-title" id="predictionModalLabel">
+          <i class="fas fa-chart-line"></i> Sales Prediction
+        </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p id="predictionMessage">
+          <i class="fas fa-info-circle"></i> Sales predicted est fixé à : <span id="salesPredictedValue">--</span>,
+          merci de votre visite.
+        </p>
+
+        <button id="showDetailsText" class="btn btn-link" style="cursor: pointer;">
+          <span class="icon-text">Plus de détails <i class="bi bi-chevron-down"></i></span>
+        </button>
+
+        <hr id="separator" class="w-100" style="display: none; margin: 0 10px; border-top: 1px solid #ccc; width: 20px; margin-right: 10px;">
+
+        <div id="detailsSection" style="display: none;">
+
+
+
+            <div class="form-group">
+              <label for="genderSelect" class="my-label-class">Genre :</label>
+              <select class="form-control my-select-class custom-select" id="genderSelect">
+                <option value="male">Homme</option>
+                <option value="female">Femme</option>
+                <option value="other">Autre</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="countryInput" class="my-label-class">Pays :</label>
+              <input type="text" class="form-control my-input-class custom-input-class" id="countryInput">
+            </div>
+
+
+
+
+          <div class="form-group">
+            <label for="commentInput" class="text-primary">Commentaire :</label>
+            <textarea class="form-control form-control-plaintext custom-truncated-border" id="commentInput" rows="3"></textarea>
+          </div>
+
+
+
+          <!-- Champ de notation d'étoiles -->
+          <div class="form-group">
+            <label for="star5" class="text-primary">Notation :</label>
+            <div class="rating">
+              <input type="radio" id="star1" name="rating" value="1" onclick="handleRating(1)"><label for="star1" title="1 étoiles"><i class="fas fa-star"></i></label>
+              <input type="radio" id="star2" name="rating" value="2" onclick="handleRating(2)"><label for="star2" title="2 étoiles"><i class="fas fa-star"></i></label>
+              <input type="radio" id="star3" name="rating" value="3" onclick="handleRating(3)"><label for="star3" title="3 étoiles"><i class="fas fa-star"></i></label>
+              <input type="radio" id="star4" name="rating" value="4" onclick="handleRating(4)"><label for="star4" title="4 étoiles"><i class="fas fa-star"></i></label>
+              <input type="radio" id="star5" name="rating" value="5" onclick="handleRating(5)"><label for="star5" title="5 étoile"><i class="fas fa-star"></i></label>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" onclick="submitForm()">
+          <i class="fas fa-check"></i> Submit
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="thankYouModal" tabindex="-1" role="dialog" aria-labelledby="thankYouModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="thankYouModalLabel">
+          <i class="fas fa-check-circle text-success"></i> Fichier téléchargé avec succès
+        </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body alert alert-success">
+        Merci de votre attention.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="fermer()">Fermer</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<script>
+  document.getElementById('showDetailsText').addEventListener('click', function () {
+    var detailsSection = document.getElementById('detailsSection');
+    var separator = document.getElementById('separator');
+
+    if (detailsSection.style.display === 'block') {
+      detailsSection.style.display = 'none';
+      separator.style.display = 'none'; // Cacher le séparateur
+      this.innerHTML = 'Plus de détails <i class="bi bi-chevron-down"></i>';
+    } else {
+      detailsSection.style.display = 'block';
+      separator.style.display = 'block'; // Afficher le séparateur
+      this.innerHTML = 'Moins de détails <i class="bi bi-chevron-up"></i>';
+    }
+  });
+
+  const countryInput = document.getElementById('countryInput');
+
+  async function getCountryFromIP() {
+    try {
+      const response = await fetch('https://ipinfo.io/json');
+      const data = await response.json();
+
+      // Mettre à jour le champ de saisie du pays
+      countryInput.value = await getCountryNameByCode(data.country) || 'Pays inconnu';
+    } catch (error) {
+      console.error('Erreur lors de la récupération des informations sur l\'adresse IP:', error);
+    }
+  }
+
+  async function getCountryNameByCode(countryCode) {
+    try {
+      const response = await fetch(`https://restcountries.com/v3/alpha/${countryCode}`);
+      const countryData = await response.json();
+
+      // Obtenir le nom du pays à partir des données de l'API
+      return countryData[0]?.name?.common || null;
+    } catch (error) {
+      console.error('Erreur lors de la récupération des informations sur le pays:', error);
+      return null;
+    }
+  }
+
+  // Appeler la fonction au chargement de la page
+  getCountryFromIP();
+
+
+</script>
+
+<div class="modal fade" id="quantityPredictionModal" tabindex="-1" role="dialog" aria-labelledby="quantityPredictionModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content" style="background-color: gold; color: #000000;">
+      <div class="modal-header" style="background-color: #007bff; color: #ffffff;">
+        <h5 class="modal-title" id="quantityPredictionModalLabel">
+          <i class="fas fa-chart-line"></i> Quantity Prediction Result
+        </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>The predicted quantity is: <span id="predictedQuantityValue"></span></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" >Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <h4><i class="fas fa-user"></i> OMAR HAI / ENSAH</h4>
+        <p>&copy; 2023 Tous droits réservés.</p>
+      </div>
+      <div class="col-md-4">
+        <h4><i class="fas fa-envelope"></i> Contactez-nous</h4>
+        <p><i class="far fa-envelope"></i> Email: <a href="mailto:omar.hai@etu.uae.ac.ma">omar.hai@etu.uae.ac.ma</a></p>
+        <p><i class="fas fa-phone"></i> Téléphone: +212 6 49 20 59 89 </p>
+        <p><i class="fas fa-map-marker-alt"></i> Adresse: Votre adresse ici</p>
+      </div>
+      <div class="col-md-4">
+        <h4><i class="fas fa-share-alt"></i> Suivez-nous</h4>
+        <a href="https://www.facebook.com/profile.php?id=100039967148784" target="_blank"><i class="fab fa-facebook"></i> Facebook</a>
+        <a href="https://twitter.com/votrepage" target="_blank"><i class="fab fa-twitter"></i> Twitter</a>
+        <a href="https://www.linkedin.com/in/omar-hai-b75b32207/" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+      </div>
+    </div>
+  </div>
+  <!-- Intégrer la carte Google Maps -->
+  <div class="separator"></div>
+  <div class="container mt-4">
+    <iframe width="100%" height="300" frameborder="0" style="border:0"
+            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13045.419024695457!2d-3.8620479!3d35.1727096!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd742cdef50e1b29%3A0x19897f71ba224d93!2s%C3%89cole%20nationale%20des%20sciences%20appliqu%C3%A9es%20d&#39;Alhoceima!5e0!3m2!1sfr!2sma!4v1703089596134!5m2!1sfr!2sma"
+            allowfullscreen>
+    </iframe>
+  </div>
+</footer>
+
+<script>
+  function predictSales() {
+    var benefit = parseFloat(document.getElementById('benefit').value);
+    var category = document.getElementById('category').value;
+    var discount = parseFloat(document.getElementById('discount').value);
+    var orderTotal = parseFloat(document.getElementById('orderTotal').value);
+    var profitPerOrder = parseFloat(document.getElementById('profitPerOrder').value);
+    var productImage = document.getElementById('productImage').value;
+    var productName = document.getElementById('productName').value;
+    var productPrice = parseFloat(document.getElementById('productPrice').value);
+
+    var userInput = {
+      "Benefit per order": benefit,
+      "Category Name": category,
+      "Order Item Discount": discount,
+      "Order Item Total": orderTotal,
+      "Order Profit Per Order": profitPerOrder,
+      "Product Image": productImage,
+      "Product Name": productName,
+      "Product Price": productPrice
+    };
+
+    fetch('/predict_linear', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(userInput),
+    })
+      .then(response => response.json())
+      .then(data => {
+        // Display the results in the modal
+        var salesPredictedValue = document.getElementById('salesPredictedValue');
+        salesPredictedValue.textContent = data.Sales_Predicted;
+
+        // Show the modal
+        $('#predictionModal').modal('show');
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  }
+</script>
+
+<script>
+  document.getElementById('fileInput').addEventListener('change', function(e) {
+    var files = e.target.files;
+    if (files.length == 0) return;
+
+    var fileReader = new FileReader();
+    fileReader.onload = function(e) {
+      var data = new Uint8Array(e.target.result);
+      var workbook = XLSX.read(data, { type: 'array' });
+
+      // Supposons que le fichier Excel a une seule feuille, sinon ajustez en conséquence
+      var sheet = workbook.Sheets[workbook.SheetNames[0]];
+      var headerRow = XLSX.utils.sheet_to_json(sheet, { header: 1 })[0];
+
+      // Remplir les champs d'entrée du tableau HTML
+      var tableRows = document.querySelectorAll('.table tbody tr');
+      for (var i = 0; i < tableRows.length; i++) {
+        var thText = tableRows[i].querySelector('th').textContent;
+        var columnIndex = headerRow.indexOf(thText);
+
+        if (columnIndex !== -1) {
+          var cellValue = sheet[XLSX.utils.encode_cell({ c: columnIndex, r: 1 })].v;
+          tableRows[i].querySelector('input').value = cellValue;
+        }
+      }
+    };
+
+    fileReader.readAsArrayBuffer(files[0]);
+  });
+
+  document.getElementById('fileInputLabel').addEventListener('click', function() {
+    // Trigger the file input click
+    document.getElementById('fileInput').click();
+  });
+</script>
+
+<script>
+  // Récupérer l'élément select
+  var optionsSelect = document.getElementById("options");
+
+  // Ajouter un écouteur d'événements pour détecter les changements dans l'option sélectionnée
+  optionsSelect.addEventListener("change", function () {
+    // Récupérer la valeur sélectionnée
+    var selectedOption = optionsSelect.value;
+
+    // Récupérer toutes les lignes liées à Sales Prediction
+    var salesPredictionRows = document.querySelectorAll(".sales-prediction-columns");
+
+    // Récupérer toutes les lignes liées à Quantity of Product
+    var quantityOfProductRows = document.querySelectorAll(".quantity-of-product-columns");
+
+    // Parcourir toutes les lignes de Sales Prediction et les afficher
+    salesPredictionRows.forEach(function (row) {
+      row.style.display = selectedOption === "salesPrediction" ? "table-row" : "none";
+    });
+
+    // Parcourir toutes les lignes de Quantity of Product et les afficher
+    quantityOfProductRows.forEach(function (row) {
+      row.style.display = selectedOption === "quantityOfProduct" ? "table-row" : "none";
+    });
+  });
+</script>
+<script><script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+  $(document).ready(function () {
+    // Cacher le contenu au chargement de la page
+    $("#contentList").addClass("hidden");
+
+    // Gérer le changement d'état du commutateur
+    $("#toggleSwitch").change(function () {
+      var isContentVisible = this.checked;
+      $("#contentList").toggleClass("hidden", !isContentVisible);
+
+
+      // Mettre à jour le texte du commutateur
+      $("#toggleText").text(isContentVisible ? "Masquer" : "Afficher");
+    });
+  });
+</script>
+<script>
+
+  function submitForm() {
+    var benefit = document.getElementById('benefit').value;
+    var categoryName = document.getElementById('category').value;
+    var orderItemDiscount = document.getElementById('discount').value;
+    var orderItemTotal = document.getElementById('orderTotal').value;
+    var orderProfitPerOrder = document.getElementById('profitPerOrder').value;
+    var productImage = document.getElementById('productImage').value;
+    var productName = document.getElementById('productName').value;
+    var productPrice = document.getElementById('productPrice').value;
+
+    var gender = document.getElementById('genderSelect').value;
+    var country = document.getElementById('countryInput').value;
+    var comment = document.getElementById('commentInput').value;
+    var rating = document.querySelector('.rating input:checked').value;
+
+    var existingData = [];
+    var existingWorkbook;
+
+    try {
+      existingWorkbook = XLSX.readFile('form_data.xlsx');
+      var existingWorksheet = existingWorkbook.Sheets[existingWorkbook.SheetNames[0]];
+      existingData = XLSX.utils.sheet_to_json(existingWorksheet, { header: 1 });
+    } catch (error) {
+      // Si le fichier n'existe pas, créez-le avec l'en-tête
+      existingData.push(['Benefit', 'Category', 'Discount', 'OrderTotal', 'ProfitPerOrder', 'ProductImage', 'ProductName', 'ProductPrice', 'Gender', 'Country', 'Comment', 'Rating']);
+      existingWorkbook = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(existingWorkbook, XLSX.utils.aoa_to_sheet(existingData), 'Sheet1');
+    }
+
+    var newDataArray = [
+      [benefit, categoryName, orderItemDiscount, orderItemTotal, orderProfitPerOrder, productImage, productName, productPrice, gender, country, comment, rating]
+    ];
+
+    // Ajout des nouvelles données à la fin des données existantes
+    var updatedData = existingData.concat(newDataArray);
+
+    // Mise à jour du workbook existant
+    var updatedWorksheet = XLSX.utils.aoa_to_sheet(updatedData);
+    existingWorkbook.Sheets[existingWorkbook.SheetNames[0]] = updatedWorksheet;
+
+    // Écriture du fichier mis à jour
+    XLSX.writeFile(existingWorkbook, 'form_data.xlsx');
+
+    showThankYouModal();
+
+  }
+
+  function showThankYouModal() {
+    // Code pour afficher le deuxième modal de remerciement.
+    $('#thankYouModal').modal('show')
+    $('#predictionModal').modal('hide');
+
+  }
+
+
+
+</script>
+<script>
+  fetch('menu.html')
+    .then(response => response.text())
+    .then(menuContent => {
+      // Injecte le contenu de menu.html dans la div menu-container
+      document.getElementById("menu-container").innerHTML = menuContent;
+    })
+    .catch(error => console.error('Erreur lors du chargement du menu :', error));
+</script>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+  function predict() {
+    var form = document.getElementById('inputForm');
+    var formData = new FormData(form);
+
+    fetch('/predict', {
+      method: 'POST',
+      body: formData
+    })
+      .then(response => response.json())
+      .then(data => {
+        // Set the predicted value in the modal
+        document.getElementById('predictedQuantityValue').textContent = data.prediction;
+
+        // Show the modal based on the selected option
+        if (data.prediction !== null) {
+          // If quantityOfProduct option is selected, show the quantity prediction modal
+          $('#quantityPredictionModal').modal('show');
+        } else {
+          // Otherwise, show the default prediction modal
+          //$('#quantityPredictionModal').modal('show');
+        }
+      })
+      .catch(error => {
+        console.error('Error during prediction:', error);
+      });
+  }
+
+</script>
+
+<script>
+  function handleRating(rating) {
+    var ratingInputs = document.querySelectorAll('.rating input');
+
+    for (var i = 0; i < ratingInputs.length; i++) {
+      var starLabel = ratingInputs[i].nextElementSibling; // Récupérer le label suivant (contenant l'icône d'étoile)
+
+      if (i + 1 <= rating) {
+        starLabel.style.color = '#f39c12'; // Couleur or
+      } else {
+        starLabel.style.color = '#ddd'; // Couleur grise par défaut
+      }
+    }
+  }
+</script>
+<script>
+
+  function fermer() {
+    $('#thankYouModal').modal('hide');
+  }
+
+</script>
+</body>
+</html>

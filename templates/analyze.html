@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Analysis - Results</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+    <!-- Bootstrap CSS link -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+
+/* Custom CSS for h1 and h2 */
+ h2 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    color: saddlebrown; /* Bootstrap primary color */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle box shadow */
+    padding: 10px;
+    border-radius: 10px;
+    transition: all 0.3s ease; /* Smooth transition effect */
+}/* Custom CSS for h1 */
+
+
+        /* Custom CSS for hover effect on h1 */
+        h1:hover {
+            color: orange;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Slightly larger box shadow on hover */
+        }
+
+        /* Custom CSS for hover effect on h2 */
+        h2 {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.3s ease; /* Adding a smooth transition effect */
+        }
+
+        h2:hover {
+            border: 2px solid orange; /* Orange border color */
+            padding: 10px;
+            border-radius: 5px;
+            background-color: gold; /* Gold background color */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Slightly larger box shadow on hover */
+        }
+
+        /* Custom CSS for graphs */
+        .graph-container {
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle box shadow */
+            transition: all 0.3s ease; /* Smooth transition effect */
+        }
+
+        .graph-container img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        /* Enhance the shadow on hover for graph container */
+        .graph-container:hover {
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Slightly larger box shadow on hover */
+        }
+
+        /* Custom CSS for the country map */
+        #country-map {
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle box shadow */
+            transition: all 0.3s ease; /* Smooth transition effect */
+        }
+
+        /* Enhance the shadow on hover for the country map */
+        #country-map:hover {
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Slightly larger box shadow on hover */
+        }
+
+        @keyframes slideInLeft {
+            0% {
+                opacity: 0;
+                transform: translateX(-100%);
+            }
+            50% {
+                opacity: 1;
+                transform: translateX(100%);
+            }
+            100% {
+                opacity: 0;
+                transform: translateX(-100%);
+            }
+        }
+
+        /* Custom CSS for h1 container */
+        .header-container {
+          display: flex;
+    justify-content: center;
+    align-items: center;
+            border-radius: 10px;
+            overflow: hidden;
+            padding: 10px;
+              background-color: #f94213; /* Gold background color */
+
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle box shadow */
+            transition: all 0.3s ease; /* Smooth transition effect */
+        }
+
+        /* Custom CSS for h1 */
+        h1 {
+            font-family: 'Roboto', sans-serif;
+            font-weight: bold;
+            color: whitesmoke; /* Bootstrap primary color */
+            margin: 0;
+            animation: slideInLeft 8s ease infinite; /* Animation for left-to-right sliding effect */
+        }
+
+        /* Custom CSS for hover effect on h1 container */
+        .header-container:hover {
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Slightly larger box shadow on hover */
+        }
+
+            .menu-column {
+      display: inline-block;
+      vertical-align: top;
+      margin: 10px;
+    }
+
+    /* Ajouter un séparateur et augmenter la longueur du menu */
+    .navbar-nav {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      background: linear-gradient(to right, #777, #007bff);
+      border-radius: 5px;
+      overflow: hidden;
+    }
+
+    .nav-item {
+      margin: 0;
+      border-right: 1px solid white; /* Ajouter un séparateur entre les éléments du menu */
+      padding: 0 10px; /* Ajouter un espace autour du texte du menu */
+    }
+
+    .nav-item:last-child {
+      border-right: none; /* Ne pas ajouter de séparateur après le dernier élément du menu */
+    }
+
+    .nav-link {
+      color: white;
+      font-weight: bold;
+    }
+
+    .nav-link:hover {
+      color: #f8f9fa;
+    }
+
+    .navbar-toggler {
+      border-color: #f8f9fa;
+    }
+
+    .navbar-toggler-icon {
+      background-color: #f8f9fa;
+    }
+
+    /* Styles pour le profil utilisateur */
+    .user-profile {
+      text-align: center;
+      margin: 20px;
+      display: flex;
+      align-items: center;
+    }
+
+    #profile-image {
+      max-width: 70px;
+      max-height: 70px;
+      margin-right: 10px;
+      border-radius: 70%; /* Make it circular */
+      overflow: hidden;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .inline-block-container {
+      display: inline-block;
+    }
+
+    .search-form {
+      margin-right: 15px;
+    }
+
+    .gold-icon {
+      color: gold;
+    }
+
+    .footer {
+      background-color: saddlebrown;
+      color: #ffffff;
+      padding: 30px 0;
+      margin-top: 20px;
+    }
+
+    .footer a {
+      color: #ffffff;
+    }
+
+    .footer a:hover {
+      color: #007bff;
+    }
+
+
+
+
+.custom-title {
+  color: #3498db;
+  font-family: 'Arial', sans-serif;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  margin: 20px auto; /* Marge de 20px en haut/bas et automatique à gauche/droite */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.close {
+  color: #3498db;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+
+
+
+    </style>
+</head>
+
+<body>
+
+    {% import 'macros.html' as macros %}  {# Import the macros file #}
+
+
+<nav class="navbar navbar-expand-lg navbar-light">
+  <div class="container">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <div class="menu-column">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="#" onclick="handleClick('Home')">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" onclick="handleClick('About')">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" onclick="handleClick('Services')">Services</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" onclick="handleClick('Contact')">Contact</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/image" onclick="handleClick('Products')">Products</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" onclick="handleClick('Blog')">Blog</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" onclick="handleClick('Gallery')">Gallery</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="container mt-3">
+      <div class="d-flex">
+        <form class="form-inline">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fas fa-search"></i></span>
+            </div>
+            <input type="text" class="form-control" placeholder="Rechercher..." id="searchInput">
+          </div>
+        </form>
+      </div>
+
+    <!-- Profil utilisateur à droite du menu -->
+    <div class="user-profile">
+      <img src="" alt="Profile Image" id="profile-image">
+      <p id="user-name">OMAR HAI</p>
+    </div>
+  </div>
+    </div>
+</nav>
+
+
+    <div style="margin-top: 20px;"></div>
+
+
+
+    <div class="container graph-container">
+        <div class="header-container">
+            <h1>Data Analysis Results</h1>
+        </div>
+
+        <h2 class="mt-4">Positive Ratings</h2>
+        <div class="graph-container">
+            <button type="button" class="btn btn-light" onclick="toggleGraph('plt_positive_ratings_html')">
+                <span class="glyphicon glyphicon-eye-open"></span> Show/Hide Graph
+            </button>
+            <img id="plt_positive_ratings_html" src="{{ plt_positive_ratings_html }}" alt="Positive Ratings"
+                class="img-fluid">
+        </div>
+
+        <h2 class="mt-4">Genre Ratings</h2>
+        <div class="graph-container">
+            <button type="button" class="btn btn-light" onclick="toggleGraph('plt_genre_ratings_html')">
+                <span class="glyphicon glyphicon-eye-open"></span> Show/Hide Graph
+            </button>
+            <img id="plt_genre_ratings_html" src="{{ plt_genre_ratings_html }}" alt="Genre Ratings"
+                class="img-fluid">
+        </div>
+
+        <h2 class="mt-4">Comments vs Ratings</h2>
+       <div class="graph-container">
+    <button type="button" class="btn btn-light" onclick="toggleGraph('plt_comments_vs_ratings_html')">
+        <span class="glyphicon glyphicon-eye-open"></span> Show/Hide Graph
+    </button>
+    <div class="img-container">
+        <img id="plt_comments_vs_ratings_html" src="{{ plt_comments_vs_ratings_html }}" alt="Comments vs Ratings" class="img-fluid rounded">
+    </div>
+</div>
+
+
+        <h2 class="mt-4">Price vs Ratings</h2>
+        <div class="graph-container">
+            <button type="button" class="btn btn-light" onclick="toggleGraph('plt_price_vs_ratings_html')">
+                <span class="glyphicon glyphicon-eye-open"></span> Show/Hide Graph
+            </button>
+            <img id="plt_price_vs_ratings_html" src="{{ plt_price_vs_ratings_html }}" alt="Price vs Ratings"
+                class="img-fluid">
+        </div>
+    </div>
+
+        <!-- Country Map container -->
+        <div id="country-map" class="mt-4"></div>
+
+        <!-- Use the 'macros' alias to call the plotly_plot macro -->
+        {{ macros.plotly_plot(country_map_data) }}
+    </div>
+
+    <!-- Bouton avec style Bootstrap -->
+<button class="btn btn-primary" data-toggle="modal" data-target="#myModal">Afficher les occurrences par pays</button>
+
+<!-- La modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Contenu de la modal -->
+    <div class="modal-content">
+      <!-- En-tête de la modal -->
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h2 class="modal-title custom-title">Occurrences par pays</h2>
+      </div>
+      <!-- Corps de la modal -->
+      <div class="modal-body">
+        <!-- Tableau des occurrences -->
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Pays</th>
+              <th>Occurrences</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for row in occurrences.iterrows() %}
+              <tr>
+                <td>{{ row[1]['Country'] }}</td>
+                <td>{{ row[1]['Occurrences'] }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+    <footer class="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <h4><i class="fas fa-user"></i> OMAR HAI / ENSAH</h4>
+        <p>&copy; 2023 Tous droits réservés.</p>
+      </div>
+      <div class="col-md-4">
+        <h4><i class="fas fa-envelope"></i> Contactez-nous</h4>
+        <p><i class="far fa-envelope"></i> Email: <a href="mailto:omar.hai@etu.uae.ac.ma">omar.hai@etu.uae.ac.ma</a></p>
+        <p><i class="fas fa-phone"></i> Téléphone: +212 6 49 20 59 89 </p>
+        <p><i class="fas fa-map-marker-alt"></i> Adresse: Votre adresse ici</p>
+      </div>
+      <div class="col-md-4">
+        <h4><i class="fas fa-share-alt"></i> Suivez-nous</h4>
+        <a href="https://www.facebook.com/profile.php?id=100039967148784" target="_blank"><i class="fab fa-facebook"></i> Facebook</a>
+        <a href="https://twitter.com/votrepage" target="_blank"><i class="fab fa-twitter"></i> Twitter</a>
+        <a href="https://www.linkedin.com/in/omar-hai-b75b32207/" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+      </div>
+    </div>
+  </div>
+  <!-- Intégrer la carte Google Maps -->
+  <div class="separator"></div>
+  <div class="container mt-4">
+    <iframe width="100%" height="300" frameborder="0" style="border:0"
+            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13045.419024695457!2d-3.8620479!3d35.1727096!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd742cdef50e1b29%3A0x19897f71ba224d93!2s%C3%89cole%20nationale%20des%20sciences%20appliqu%C3%A9es%20d&#39;Alhoceima!5e0!3m2!1sfr!2sma!4v1703089596134!5m2!1sfr!2sma"
+            allowfullscreen>
+    </iframe>
+  </div>
+</footer>
+
+    <!-- Bootstrap JS and Popper.js scripts (required for Bootstrap components) -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <script>
+        function toggleGraph(graphId) {
+            var graph = document.getElementById(graphId);
+            graph.style.display = (graph.style.display === 'none' || graph.style.display === '') ? 'block' : 'none';
+        }
+    </script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    // Récupérer l'élément de l'image de profil
+    var profileImage = document.getElementById('profile-image');
+
+    // Attribuer le chemin de l'image par défaut (dans le même répertoire que le HTML)
+    // Créer un élément pour afficher l'image
+    // Utiliser "const" pour déclarer une constante
+    const profileImageElement = document.getElementById("profile-image");
+
+    // Récupérer la valeur de l'image
+    const profileImageUrl = "/static/omar.png";
+
+    // Mettre à jour l'élément d'affichage
+    profileImageElement.src = profileImageUrl;
+
+    // Fonction pour gérer le clic sur le menu
+    function handleClick(menuItem) {
+      alert('Clicked: ' + menuItem);
+    }
+  });
+
+
+
+
+
+</script>
+
+<script>
+// Fonctions pour ouvrir et fermer la modal
+function openModal() {
+    document.getElementById("myModal").style.display = "block";
+}
+
+function closeModal() {
+    document.getElementById("myModal").style.display = "none";
+}
+</script>
+</body>
+
+</html>
