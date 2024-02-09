@@ -1,3 +1,4 @@
+:star: 
 # Classification des Images de Produit
 
 ## Projet n°1 : Prédiction des Ventes & Quantités de Produits et Classification des Images de Produit
@@ -51,10 +52,8 @@ Utilisez les hashtags suivants pour suivre notre progression sur les réseaux so
 
 ---
 
-Nous sommes ravis de partager notre dernier travail avec vous et espérons que cela apportera de la valeur à votre compréhension de la classification des images de produit.
+:rocket:Nous sommes ravis de partager notre dernier travail avec vous et espérons que cela apportera de la valeur à votre compréhension de la classification des images de produit.
 
 Bonne exploration et analyse prédictive ! 🚀
 
-:star: Exemple d'icône Font Awesome : [Étoile](https://fontawesome.com/icons/star?style=solid)
 
-:rocket: Exemple d'icône Material Icons : [Icône Maison](https://material.io/resources/icons/static/ic_icons_homepage_black_24dp.png)
