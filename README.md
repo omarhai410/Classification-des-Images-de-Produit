@@ -55,6 +55,6 @@ Nous sommes ravis de partager notre dernier travail avec vous et espérons que c
 
 Bonne exploration et analyse prédictive ! 🚀
 
-🌟 Exemple d'icône Font Awesome : [Étoile](https://fontawesome.com/icons/star?style=solid)
+:star: Exemple d'icône Font Awesome : [Étoile](https://fontawesome.com/icons/star?style=solid)
 
-🚀 Exemple d'icône Material Icons : [Icône Maison](https://material.io/resources/icons/static/ic_icons_homepage_black_24dp.png)
+:rocket: Exemple d'icône Material Icons : [Icône Maison](https://material.io/resources/icons/static/ic_icons_homepage_black_24dp.png)
