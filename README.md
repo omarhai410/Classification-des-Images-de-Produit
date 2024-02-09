@@ -37,7 +37,7 @@ Nous sommes ravis de partager notre dernier travail avec vous et espérons que c
 
 🚀 Bonne exploration et analyse prédictive ! 🚀
 
-![Capture d'écran](images/Capture_d_ecran.png)
+![Capture d'écran](images/Capture%20d'écran%202024-02-09%20013612.png)
 
 Exemple d'icône Font Awesome : 
 ![Icône Font Awesome](https://fontawesome.com/icons/star?style=solid)
