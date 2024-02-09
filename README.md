@@ -20,9 +20,11 @@ Dans cette partie du projet, nous avons développé un programme prédictif bas�
 
 ### Fonctionnalités clés
 
-- Utilisation d'un modèle d'apprentissage automatique pour la classification des images de produit.
-- Génération de liens Google personnalisés pour explorer des pages similaires aux classes prédites.
-- Utilisation des hashtags #IA, #AnalysePrédictive, #ClassificationdImages pour suivre le projet sur les réseaux sociaux.
+| Fonctionnalité                                               | Description                                                                                           |
+| ------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------- |
+| Utilisation d'un modèle d'apprentissage automatique          | Classification des images de produit à l'aide d'un modèle prédictif.                                   |
+| Génération de liens Google personnalisés                     | Les liens facilitent l'exploration de pages similaires aux classes prédites.                            |
+| Utilisation des hashtags                                     | Utilisation des hashtags #IA, #AnalysePrédictive, #ClassificationdImages pour suivre le projet.         |
 
 ---
 
@@ -52,3 +54,7 @@ Utilisez les hashtags suivants pour suivre notre progression sur les réseaux so
 Nous sommes ravis de partager notre dernier travail avec vous et espérons que cela apportera de la valeur à votre compréhension de la classification des images de produit.
 
 Bonne exploration et analyse prédictive ! 🚀
+
+🌟 Exemple d'icône Font Awesome : [Étoile](https://fontawesome.com/icons/star?style=solid)
+
+🚀 Exemple d'icône Material Icons : [Icône Maison](https://material.io/resources/icons/static/ic_icons_homepage_black_24dp.png)
