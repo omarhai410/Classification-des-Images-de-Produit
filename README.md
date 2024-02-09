@@ -35,7 +35,9 @@ Nous sommes ravis de partager notre dernier travail avec vous et espérons que c
 
 🚀 Bonne exploration et analyse prédictive ! 🚀
 
-![Image de Projet]("C:\Users\Dell\Pictures\Screenshots\Capture d'écran 2024-02-09 013612.png")
+🚀 Bonne exploration et analyse prédictive ! 🚀
+
+![Image de Projet](Capture d'écran 2024-02-09 013612.png)
 
 Exemple d'icône Font Awesome : 
 ![Icône Font Awesome](https://fontawesome.com/icons/star?style=solid)
